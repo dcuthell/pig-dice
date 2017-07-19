@@ -4,7 +4,6 @@ function Game (){
   this.player1= new Player();
   this.player2 = new Player();
   this.dice = new Dice();
-  this.num = 16;
 }
 
 function Player() {
@@ -12,33 +11,48 @@ function Player() {
 }
 
 function Dice() {
-  this.tempVal = 12;
+  this.tempVal = 0;
 }
 //Prototypes
-
-
-
-function roll(){
-  alert("rolled");
+Dice.prototype.roll = function(){
+  var num = Math.floor(Math.random() * 6) + 1 ;
+  if(num === 1){
+    console.log("It's a one");
+    this.tempVal = 0;
+  }else{
+    this.tempVal += num;
+    console.log("rolled a " + num);
+    console.log(this.tempVal);
+  }
+  return num;
 }
 
-function hold(){
-  alert("held");
+Dice.prototype.hold = function(){
+  var num = this.tempVal;
+  this.tempVal = 0;
+  return num;
 }
+
+Player.prototype.setScore = function(val){
+  this.score += val;
+}
+
 //UI
 $(document).ready(function(){
+  var game = new Game();
+
   $(".p1.roll").click(function () {
-    console.log("player one roll");
+    game.dice.roll();
   });
   $(".p1.hold").click(function () {
-    console.log("player one hold");
+    game.player1.setScore(game.dice.hold());
+    console.log("P1 Score is now: " + game.player1.score);
   });
   $(".p2.roll").click(function () {
-    console.log("player two roll");
+    game.dice.roll();
   });
   $(".p2.hold").click(function () {
-    console.log("player two hold");
-    var game = new Game();
-    alert(game.dice.tempVal);
+    game.player2.setScore(game.dice.hold());
+    console.log("P2 Score is now: " + game.player2.score);
   });
 });
