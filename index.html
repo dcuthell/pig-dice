@@ -12,20 +12,25 @@
     <div class="container-fluid">
       <div class="jumbotron">
         <h1>Welcome to Pig Dice</h1>
-        <p>Do stuff</p>
+        <p>First to 100 wins!</p>
       </div>
       <div class="row">
         <div class="col-md-6">
           <h2>Player 1</h2>
           <h3 id="p1Score">0</h3>
           <button class="btn-primary p1 roll" type = "button">Roll</button>
-          <button class="btn-primary p1 hold" type = "button">Hold</button>
+          <button class="btn-warning p1 hold" type = "button">Hold</button>
         </div>
         <div class="col-md-6">
           <h2>Player 2</h2>
           <h3 id="p2Score">0</h3>
           <button class="btn-primary p2 roll" type = "button">Roll</button>
-          <button class="btn-primary p2 hold" type = "button">Hold</button>
+          <button class="btn-warning p2 hold" type = "button">Hold</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2> You rolled a <span id="rollResult"></span> </h2>
         </div>
       </div>
     </div>
