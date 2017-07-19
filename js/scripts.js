@@ -1,20 +1,30 @@
 //Business Logic
+//Constructors
 function Game (){
-  var player1= new Player();
-  var player2 = new Player();
+  this.player1= new Player();
+  this.player2 = new Player();
+  this.dice = new Dice();
+  this.num = 16;
 }
- function Player() {
-   var score = 0;
 
- }
+function Player() {
+  this.score = 0;
+}
 
- function roll(){
-   alert("rolled");
- }
+function Dice() {
+  this.tempVal = 12;
+}
+//Prototypes
 
- function hold(){
-   alert("held");
- }
+
+
+function roll(){
+  alert("rolled");
+}
+
+function hold(){
+  alert("held");
+}
 //UI
 $(document).ready(function(){
   $(".p1.roll").click(function () {
@@ -28,5 +38,7 @@ $(document).ready(function(){
   });
   $(".p2.hold").click(function () {
     console.log("player two hold");
+    var game = new Game();
+    alert(game.dice.tempVal);
   });
 });
