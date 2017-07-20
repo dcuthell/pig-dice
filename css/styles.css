@@ -12,10 +12,12 @@ h3{
   margin-left: 220px;
   margin-right: 220px;
 }
+
 .row{
   /*padding: 100px;*/
   padding-left: 10%;
   padding-right: 10%;
+  display: none;
 }
 .col-md-6{
   background-color: lightgrey;
