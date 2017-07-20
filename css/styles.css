@@ -12,7 +12,9 @@ h3{
   margin-left: 220px;
   margin-right: 220px;
 }
-
+.diceBtn{
+  display: none;
+}
 .row{
   /*padding: 100px;*/
   padding-left: 10%;

@@ -1,6 +1,7 @@
 //Business Logic
 //Constructors
 function Game (){
+  this.players = 2;
   this.player1= new Player();
   this.player2 = new Player();
   this.dice = [];
@@ -95,6 +96,10 @@ Game.prototype.smartComp = function(){
   return 6;
 }
 
+function sleep(number) {
+  window.setTimeout(sleep, number);
+}
+
 //UI
 function startComp(game){
   $(".p2").hide();
@@ -102,14 +107,17 @@ function startComp(game){
     var smart = game.smartComp();
     if(smart === 1){
       $("#rollResult").text(game.roll(game.player2));
+      sleep(1000);
       if(game.player2.turnVal === 0){
         $(".p2").hide();
         $(".p1").show();
       }
       $("#p2Score").text(game.player2.tempScore);
+      sleep(1000);
     }else if(smart === 0){
       game.hold(game.player2);
       $("#p2Score").text(game.player2.score);
+      sleep(1000);
       $(".p2").hide();
       $(".p1").show();
     }
@@ -118,7 +126,16 @@ function startComp(game){
 
 $(document).ready(function(){
   var game = new Game();
-
+  $("#btnA").click(function(){
+    game.players = 1;
+    $(".playerBtn").hide();
+    $(".diceBtn").show();
+  });
+  $("#btnB").click(function(){
+    game.players = 2;
+    $(".playerBtn").hide();
+    $(".diceBtn").show();
+  });
   $("#btn1").click(function(){
     game.createDice(1);
     $(".row").show();
@@ -139,8 +156,10 @@ $(document).ready(function(){
     if(game.player1.turnVal === 0){
       $(".p1").hide();
       $(".p2").show();
-      game.player2.turnVal = 1;
-      startComp(game);
+      if (game.players ===1) {
+        game.player2.turnVal = 1;
+        startComp(game);
+      }
     }
     $("#p1Score").text(game.player1.tempScore);
   });
@@ -150,8 +169,10 @@ $(document).ready(function(){
     $("#p1Score").text(game.player1.score);
     $(".p1").hide();
     $(".p2").show();
-    game.player2.turnVal = 1;
-    startComp(game);
+    if (game.players === 1) {
+      game.player2.turnVal = 1;
+      startComp(game);
+    }
   });
 
   $(".p2.roll").click(function () {
